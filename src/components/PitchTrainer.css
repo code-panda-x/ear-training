@@ -1,0 +1,21 @@
+/* .pitch-trainer-button {
+  margin: theme.spacing.unit;
+}
+
+.pitch-trainer-leftIcon {
+  marginRight: theme.spacing.unit;
+}
+
+rightIcon {
+  marginLeft: theme.spacing.unit,
+}
+
+iconSmall {
+  fontSize: 20; 
+}
+*/
+
+.pitch-trainer-stat-table {
+  width: 100%;
+  max-width: 80vw;
+}
