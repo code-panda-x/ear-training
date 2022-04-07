@@ -1,0 +1,82 @@
+
+
+
+.sheet {
+  background-color: "#e1d5c9";
+}
+
+.toolbar {
+  color: "#27201a";
+  background-color: "#e1d5c9";
+  border-color: "#bc8c61";
+}
+.icon {
+  margin-right: "20px";
+}
+
+.container {
+  background: "linear-gradient(45deg, #cbab89 70%, #bc8c61 100%)";
+  padding: "15px";
+}
+
+.buttons {
+  margin-top: "40px";
+}
+
+.button {
+  color: "#27201a";
+  background-color: "#ffffff  ";
+}
+
+.buttonSelected {
+  color: "#27201a";
+  background-color: "#d1b094";
+}
+
+.buttonCard {
+  color: "#27201a";
+  border: "1px solid black";
+}
+
+.cardGrid {
+  padding: "20px 20px";
+}
+
+.card {
+  height: "100%";
+  display: "flex";
+  flex-direction: "column";
+  background-color: "#efe6dc";
+  border-color: "#bc8c61",;
+}
+
+.cardMedia {
+  padding-top: "100%";
+  border-radius: "25 px";
+  border: "2.75px solid black";
+}
+
+.cardContent {
+  flex-grow: 1;
+}
+
+.footer {
+  background: "linear-gradient(45deg, #cbab89 70%, #bc8c61 100%)";
+  padding: "20px 0";
+}
+
+
+.img {
+  padding-top: "100%";
+
+}
+.cardHolder {
+  padding: "50px 50px";
+  background-color: "#ede5de";
+  width: "950px";
+  height: "auto"
+}
+
+.gridItem {
+  padding: "20px 20px 20px 20px";
+}

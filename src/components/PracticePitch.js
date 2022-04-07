@@ -145,10 +145,10 @@ class PitchTrainer extends Component {
     // A: setting up all the variables to initial state?
     this.state = {
       //     ['C',  'C#', 'D', 'D#',  'E',  'F', 'F#', 'G', 'G#',  'A','A#',  'B']
-      tones: [true,false,true,false,false,false,false,true,false,true,false,false],
+      tones: [true,false,true,false,true,true,false,true,false,true,false,true],
       isLoaded: false,
       isStarted: false,
-      numChoices: 3,
+      numChoices: 4,
       tonePlaying: 'C',
       notePlaying: 'C4',
       gameStartTime: 0,
@@ -227,7 +227,7 @@ class PitchTrainer extends Component {
   // return an array of possible answers
   getShuffledAnswers(tones, tonePlaying, numChoices) {
     let answers = [tonePlaying], tonesChosen = [], numAns;
-    for(let i = 0; i < tones.length; ++i){ if(tones[i] && TONES[i]!==tonePlaying) tonesChosen.push(TONES[i]); }
+    for(let i = 0; i < tones.length; ++i){ if(TONES[i]!==tonePlaying) tonesChosen.push(TONES[i]); }
     numAns = Math.min(numChoices-1, tonesChosen.length);
     tonesChosen = shuffleArray(tonesChosen);
     while (numAns--) { answers.push(tonesChosen.pop()); }
@@ -281,6 +281,8 @@ class PitchTrainer extends Component {
   }
   handleGameAnswer(note) {
     const timeNow = performance.now(), tonePlayingIdx = TONES.indexOf(this.state.tonePlaying);
+    const index = TONES.indexOf(note);
+  
     if(!this.state.isCorrect) { // do nothing if already answered correctly
       let statTries = this.state.statTries;
       statTries[tonePlayingIdx] += 1;
@@ -296,10 +298,16 @@ class PitchTrainer extends Component {
           statTriesTime: statTriesTime,
           statCorrect: statCorrect,
         });
-      } else {
+      } else if(this.state.tones[index]){
         this.setState({
           statTries: statTries,
           lastAnswer:0,
+        });
+      }
+      else{
+        this.setState({
+          statTries: statTries,
+          lastAnswer:2,
         });
       }
     } 
@@ -322,9 +330,9 @@ class PitchTrainer extends Component {
             <h2>{!this.state.isStarted ? "Customize the training" : "Listen and select the note played" }</h2>
           </Grid>
 
-          <Grid item xs={"auto"}>
+          {/* <Grid item xs={"auto"}>
             <TonesCheckboxes tones={this.state.tones} handleSelection={(name) => this.handleSelection(name)}/>
-          </Grid>
+          </Grid> */}
 
           {!this.state.isStarted ? ( 
             <Grid item xs={"auto"}>
@@ -380,7 +388,7 @@ class PitchTrainer extends Component {
           {(this.state.isStarted) && 
             <Grid item>
               <Typography variant="h5">
-                {(this.state.lastAnswer===-1) ? "Make a choice" : (this.state.lastAnswer===1) ? "Correct! The note is: "+this.state.notePlaying : "Sorry, try again."}
+                {(this.state.lastAnswer===-1) ? "Make a choice" : (this.state.lastAnswer===1) ? "Correct! The note is: "+this.state.notePlaying : (this.state.lastAnswer == 0) ? "Wrong! But you at least got the scale right! Guess you CAN read!" : "Bruh, this is not even in the key! You be trippin\', Pass me some of that Mozart too!"}
               </Typography>
             </Grid>
           }
