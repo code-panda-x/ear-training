@@ -18,6 +18,8 @@ import MidiTrainer from './components/MidiTrainer'
 import StudyMode from './components/StudyMode';
 import ScaleLesson from './components/ScaleLesson';
 import PracticePitch from './components/PracticePitch';
+import TestMode from './components/TestMode';
+import TestPitch from './components/TestPitch';
 
 // Firebase config
 const firebaseConfig = {
@@ -86,6 +88,8 @@ class App extends Component {
                   <Route exact path="/StudyMode" component={StudyMode} />
                   <Route exact path="/ScaleLesson" component={ScaleLesson} />
                   <Route exact path="/PracticePitch" component={PracticePitch} />
+                  <Route exact path="/TestMode" component={TestMode} />
+                  <Route exact path="/TestPitch" component={TestPitch} />
                 </div>
               </div>
             </div>
