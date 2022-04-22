@@ -105,7 +105,8 @@ class TopMenu extends React.Component {
                 >
                 Home
                 </Button>
-                {/* <Button
+                {/*
+                 <Button
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"
                   color="inherit"
@@ -129,6 +130,14 @@ class TopMenu extends React.Component {
                 >
                 Midi
                 </Button> */}
+                <Button
+                  aria-owns={open ? 'menu-appbar' : undefined}
+                  aria-haspopup="true"
+                  color="inherit"
+                  component={Link} to="/tone"
+                >
+                Live Piano
+                </Button>
                 <Button
                   aria-owns={open ? 'menu-appbar' : undefined}
                   aria-haspopup="true"

@@ -388,7 +388,7 @@ class PitchTrainer extends Component {
           {(this.state.isStarted) && 
             <Grid item>
               <Typography variant="h5">
-                {(this.state.lastAnswer===-1) ? "Make a choice" : (this.state.lastAnswer===1) ? "Correct! The note is: "+this.state.notePlaying : (this.state.lastAnswer == 0) ? "Wrong! But you at least got the scale right! Guess you CAN read!" : "Bruh, this is not even in the key! You be trippin\', Pass me some of that Mozart too!"}
+                {(this.state.lastAnswer===-1) ? "Make a choice" : (this.state.lastAnswer===1) ? "Correct! The note is: "+this.state.notePlaying : (this.state.lastAnswer == 0) ? "Wrong Note! At least you got the scale right! Try again!" : "The note you selected is not in the key! Try again!"}
               </Typography>
             </Grid>
           }
