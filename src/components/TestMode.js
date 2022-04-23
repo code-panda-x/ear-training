@@ -119,8 +119,8 @@ function PitchTrainerStatistics(props) {
           <TableRow>
             <TableCell>Notes Tested</TableCell>
             <TableCell numeric>Number of Questions</TableCell>
-            <TableCell numeric>Number of Skipped Questions</TableCell>
-            <TableCell numeric>Number of Attempts</TableCell>
+            <TableCell numeric>Number of Incorrect Attempts</TableCell>
+            <TableCell numeric>Number of Correct Attempts</TableCell>
             <TableCell numeric>Average Times for Correct Attempt(s)</TableCell>
             <TableCell numeric>Accuracy (#Correct/#Attempts)</TableCell>
           </TableRow>
@@ -155,7 +155,7 @@ class TestMode extends Component {
     this.state = {
       //     ['C',  'C#', 'D', 'D#',  'E',  'F', 'F#', 'G', 'G#',  'A','A#',  'B']
       tones: [true,true,true,true,true,true,true,true,true,true,true,true],
-    //   tones: [true,true,true,false,false,false,false,false,false,false,false,false],
+      // tones: [true,true,true,false,false,false,false,false,false,false,false,false],
       isLoaded: false,
       isStarted: false,
       numChoices: 12,
@@ -257,7 +257,7 @@ class TestMode extends Component {
           note,
           numQ: this.state.statQuestions[noteIdx],
           numS: this.state.statSkips[noteIdx],
-          numA: this.state.statTries[noteIdx],
+          numA: this.state.statCorrect[noteIdx],
           averageCorrectTime: (this.state.statTriesTime[noteIdx]/this.state.statCorrect[noteIdx]/1000).toFixed(4), // milliseconds
           accuracy: (this.state.statCorrect[noteIdx]/this.state.statTries[noteIdx]).toFixed(4),
         });
@@ -311,27 +311,29 @@ class TestMode extends Component {
   handleGameAnswer(note) {
     const timeNow = performance.now(), tonePlayingIdx = TONES.indexOf(this.state.tonePlaying);
     const index = TONES.indexOf(note);
-  
+    
     if(!this.state.isCorrect) { // do nothing if already answered correctly
-      let statTries = this.state.statTries;
-      statTries[tonePlayingIdx] += 1;
-      if(note===this.state.tonePlaying) {
-        let statTriesTime = this.state.statTriesTime;
-        statTriesTime[tonePlayingIdx] += (timeNow - this.state.gameStartTime); // milliseconds
-        let statCorrect = this.state.statCorrect;
-        statCorrect[tonePlayingIdx] += 1;
-        this.setState({
-          isCorrect:true,
-          lastAnswer:1,
-          statTries: statTries,
-          statTriesTime: statTriesTime,
-          statCorrect: statCorrect,
-        });
-      } else {
-        this.setState({
-          statTries: statTries,
-          lastAnswer:0,
-        });
+      if (this.state.lastAnswer!=0) {
+        let statTries = this.state.statTries;
+        statTries[tonePlayingIdx] += 1;
+        if(note===this.state.tonePlaying) {
+          let statTriesTime = this.state.statTriesTime;
+          statTriesTime[tonePlayingIdx] += (timeNow - this.state.gameStartTime); // milliseconds
+          let statCorrect = this.state.statCorrect;
+          statCorrect[tonePlayingIdx] += 1;
+          this.setState({
+            isCorrect:true,
+            lastAnswer:1,
+            statTries: statTries,
+            statTriesTime: statTriesTime,
+            statCorrect: statCorrect,
+          });
+        } else {
+          this.setState({
+            statTries: statTries,
+            lastAnswer:0,
+          });
+        }
       }
     } 
   }
@@ -400,11 +402,8 @@ class TestMode extends Component {
                 </Grid>
                 <Grid item xs={6} sm={6}>
                   <Button fullWidth={true} variant="contained" className="button pitch-trainer-button" onClick={() => this.handleNext()}>
-                    {(!this.state.isCorrect) ? 
-                      (<SkipNextIcon className="leftIcon pitch-trainer-leftIcon" />) :
-                      (<NavigateNextIcon className="leftIcon pitch-trainer-leftIcon" />)
-                    }
-                    {(!this.state.isCorrect) ? ("Skip") : ("Next")}
+                    {(<SkipNextIcon className="leftIcon pitch-trainer-leftIcon" />)}
+                    {("Next")}
                   </Button>
                 </Grid>
               </Grid>
@@ -425,7 +424,7 @@ class TestMode extends Component {
           {(this.state.isStarted) && 
             <Grid item>
               <Typography variant="h5">
-              {(this.state.lastAnswer===-1) ? "Make a choice" : (this.state.lastAnswer===1) ? "Correct! The note is: "+this.state.notePlaying : "Sorry, try again."}
+              {(this.state.lastAnswer===-1) ? "Make a choice" : (this.state.lastAnswer===1) ? "Correct! The note is: "+this.state.notePlaying : "Wrong!"}
               </Typography>
             </Grid>
           }
