@@ -375,7 +375,7 @@ class TestMode extends Component {
                             You will be hearing all 12 notes, and your task is try to identify all of them!
                             Each note will be played 3 times, if you identify the same note correctly 3 times, we will eliminate that note.
                             You might have multiple rounds, this test won't stop until you eliminate all the notes.
-                            Can you pass the test in first round 🧐?
+                            Can you pass the test 🧐?
                             </Typography>
                         </CardContent>
                         <CardActions style={{justifyContent:'center', alignItems:'center', paddingBottom:"20px"}}>   
