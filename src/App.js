@@ -107,12 +107,12 @@ class Home extends React.Component {
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <p>
-        This is a open source web app about ear training. <br/>
+        This is an intelligent web app about ear training. <br/>
         Select a page on top right corner to begin. <br/> <br/>
-        Tone: a virtual piano. <br/>
-        Pitch: a perfect pitch practice. <br/>
-        Midi: a transcription practice. <br/> <br/>
-        <a href="https://github.com/snowme34/tone-the-ear" target="_blank" rel="noopener noreferrer" style={{color: '#64B5F6'}}>Star Me</a>
+        Live Piano: a virtual piano. <br/>
+        Study Mode: a guide to learn musical skills. <br/>
+        Test Mode: a game to test your skills. <br/> <br/>
+        <a href="https://github.com/code-panda-x/ear-training/tree/main" target="_blank" rel="noopener noreferrer" style={{color: '#64B5F6'}}>Star Me</a>
       </p>
     </header>);
 	}
