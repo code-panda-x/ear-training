@@ -112,7 +112,7 @@ class Home extends React.Component {
         Tone: a virtual piano. <br/>
         Pitch: a perfect pitch practice. <br/>
         Midi: a transcription practice. <br/> <br/>
-        <a href="https://github.com/snowme34/tone-the-ear" target="_blank" rel="noopener noreferrer" style={{color: '#64B5F6'}}>Star Me</a>
+        <a href="https://github.com/code-panda-x/ear-training" target="_blank" rel="noopener noreferrer" style={{color: '#64B5F6'}}>Star Me</a>
       </p>
     </header>);
 	}

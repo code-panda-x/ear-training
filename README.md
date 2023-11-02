@@ -20,3 +20,9 @@
 6. To start running the project
     ``` 
     npm start
+
+Additional step:
+Run 
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
